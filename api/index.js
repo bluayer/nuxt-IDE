@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 // JWT middleware
 const jwt = require('express-jwt')
 
-app.use('/book', jwt({secret: 'nuxt-book'}), require('./book'));
+app.use('/code', jwt({secret: 'nuxt-book'}), require('./code'));
 app.use('/auth', require('./auth'));
 
 // catch 404 and forward to error handler

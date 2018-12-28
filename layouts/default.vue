@@ -100,7 +100,7 @@
         items: [
           { icon: 'apps', title: 'Welcome', to: '/' },
           { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
-          { icon: 'book', title: 'Show Books', to: '/ShowBooks'}
+          { icon: 'book', title: 'Show Code', to: '/ShowBooks'}
         ],
         miniVariant: false,
         right: true,

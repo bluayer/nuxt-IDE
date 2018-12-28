@@ -1,35 +1,72 @@
 <template>
-  <v-data-table v-model="selected" :headers="headers" :items="books"
+<div>
+  <v-data-table v-model="selected" :headers="headers" :items="codes"
     item-key="isbn" select-all class="elevation-1">
     <template slot="items" slot-scope="props">
       <td><v-checkbox v-model="props.selected" primary hide-details></v-checkbox></td>
-      <td class="text-xs-center">{{props.item.isbn}}</td>
       <td class="text-xs-center">{{props.item.title}}</td>
-      <td class="text-xs-center">{{props.item.author}}</td>
-      <td class="text-xs-center">{{props.item.published_year}}</td>
+      <td class="text-xs-center">{{props.item.username}}</td>
+      <td class="text-xs-center">{{props.item.code}}</td>
+      <td class="text-xs-center">{{props.item.input}}</td>
+      <td class="text-xs-center">{{props.item.updated_date}}</td>
     </template>
   </v-data-table>
+
+   <v-form>
+      <v-text-field
+        v-model="title"
+        label="title"
+        required
+      ></v-text-field>
+      <v-text-field
+        v-model="code"
+        label="code"
+        required
+      ></v-text-field>
+      <v-text-field
+        v-model="input"
+        label="input"
+        required
+      ></v-text-field>
+      <v-btn
+        @click="submit"
+      >
+        추가
+      </v-btn>
+    </v-form> 
+  </div>
 </template>
 
 <script>
 export default {
   middleware: ['auth'],
   data () {
+    
     return {
+      title: "", username: "", code: "", input: "", // 폼에 전송되는 데이터
       selected: [],
       headers: [
-        { text: 'ISBN', align: 'center', sortable: true, value: 'isbn' },
-        { text: '제목', align: 'center',sortable: true, value: 'title' },
-        { text: '저자', align: 'center',sortable: true, value: 'author' },
-        { text: '출간일', align: 'center', sortable: true, value: 'published_year' }
+        { text: 'code', align: 'center',sortable: true, value: 'code' },
+        { text: 'input', align: 'center',sortable: true, value: 'input' }
       ]
     }
   },
   async asyncData({ $axios }) {
-     const books = await $axios.$get('/api/book')
-     return {
-       books
-     }
-   }
+    const codes = await $axios.$get('/api/code');
+    return {
+      codes
+    }
+  },
+
+  methods: {
+    async submit () {
+      await this.$axios.post('/api/code', {
+        title: this.title,
+        username: this.$auth.$state.user.user.username, // 현재 로그인 세션의 유저 이름
+        code: this.code,
+        input: this.input,
+      })
+    }
+  }
  }
 </script>

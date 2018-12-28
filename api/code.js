@@ -1,19 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Book = require('../models/Book.js');
+var Code = require('../models/Code.js');
 
-/* GET ALL BOOKS */
+/* GET ALL CODES */
 router.get('/', function(req, res, next) {
-  Book.find(function (err, products) {
+  Code.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
   });
 });
 
-/* SAVE BOOK */
+/* SAVE CODE */
 router.post('/', function(req, res, next) {
-  Book.create(req.body, function (err, post) {
+  Code.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
