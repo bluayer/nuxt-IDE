@@ -100,7 +100,6 @@
         items: [
           { icon: 'apps', title: 'Welcome', to: '/' },
           { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
-          { icon: 'face', title: 'User Info', to: '/:user?' + this.$auth.$state.user.user.username },
           { icon: 'book', title: 'Show Books', to: '/ShowBooks'}
         ],
         miniVariant: false,
