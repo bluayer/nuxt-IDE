@@ -18,11 +18,15 @@
         label="title"
         required
       ></v-text-field>
-      <v-text-field
-        v-model="code"
-        label="code"
-        required
-      ></v-text-field>
+      <v-flex xs6>
+        <v-textarea
+          solo
+          v-model="code"
+          name="input-7-4"
+          label="code"
+          required
+        ></v-textarea>
+      </v-flex>
       <v-text-field
         v-model="input"
         label="input"
@@ -71,8 +75,7 @@ export default {
         code:this.code,
         input:this.input,
       }).then((response)=>{
-        console.log(response);
-
+        console.log(response.data.output); // compile 후 반환되는 result = response.data.output
       }))
     }
   }
