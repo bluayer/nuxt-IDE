@@ -22,6 +22,7 @@ const jwt = require('express-jwt')
 
 app.use('/code', jwt({secret: 'nuxt-book'}), require('./code'));
 app.use('/auth', require('./auth'));
+app.use('/compile',require('./compile'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

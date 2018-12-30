@@ -33,7 +33,7 @@
       >
         추가
       </v-btn>
-    </v-form> 
+    </v-form>
   </div>
 </template>
 
@@ -41,7 +41,7 @@
 export default {
   middleware: ['auth'],
   data () {
-    
+
     return {
       title: "", username: "", code: "", input: "", // 폼에 전송되는 데이터
       selected: [],
@@ -65,7 +65,15 @@ export default {
         username: this.$auth.$state.user.user.username, // 현재 로그인 세션의 유저 이름
         code: this.code,
         input: this.input,
-      })
+      }).then(
+      this.$axios.post('/api/compile',{
+        title: this.title,
+        code:this.code,
+        input:this.input,
+      }).then((response)=>{
+        console.log(response);
+
+      }))
     }
   }
  }
