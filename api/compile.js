@@ -11,6 +11,9 @@ router.post('/', function(req, res, next) {
   fs.writeFileSync('./stdin', req.body.input)
 
   shell.exec('gcc ' + filename, {silent:true}, function(exit, output, error){
+    if(error){
+      console.log(error);
+    }
     if ( exit ){
 
         var err_result = {
