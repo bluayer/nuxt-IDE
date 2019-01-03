@@ -1,4 +1,5 @@
-# nuxt-book
+# nuxt-IDE
+It can compile c++ code in web with vue, nuxt, express
 
 > Nuxt + Nuxt/auth + Nuxt/axios
 > Express + Mongo DB
